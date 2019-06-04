@@ -117,7 +117,7 @@ cargar();
         jlnombre.setBackground(new java.awt.Color(255, 255, 255));
         jlnombre.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jlnombre.setForeground(new java.awt.Color(255, 255, 255));
-        jlnombre.setText("PRECIO-PRODUCTO");
+        jlnombre.setText("CANTIDAD-PRODUCTO");
 
         jComboNOMBRE.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentHidden(java.awt.event.ComponentEvent evt) {
