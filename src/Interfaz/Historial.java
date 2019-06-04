@@ -482,7 +482,7 @@ public class Historial extends javax.swing.JDialog {
         Document doc = new Document();
         try {
     
-      PdfWriter.getInstance(doc, new FileOutputStream("C:\\Users\\usuario\\Documents\\NetBeansProjects\\TiendaRefrescos\\FACTURAS\\"+jTNombreCliente.getText()+".pdf"));
+      PdfWriter.getInstance(doc, new FileOutputStream("D:\\Users\\danie\\Documents\\NetBeansProjects\\TiendaRefrescos\\FACTURAS\\"+jTNombreCliente.getText()+".pdf"));
       //PdfWriter.getInstance(doc, new FileOutputStream("C:/Users/usuario/Documents/NetBeansProjects/TiendaRefrescos/src/FACTURAS/Amor.pdf"));
         doc.open();
         PdfPTable tbl=new PdfPTable(5);
@@ -603,7 +603,7 @@ Paragraph parrafo1 = new Paragraph("FACTURA DE COMPRA \n TOTAL A PAGAR $"+sum+"\
             
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////777
          try {
-            String url="C:\\Users\\usuario\\Documents\\NetBeansProjects\\TiendaRefrescos\\FACTURAS\\"+jTNombreCliente.getText()+".pdf";
+            String url="D:\\Users\\danie\\Documents\\NetBeansProjects\\TiendaRefrescos\\FACTURAS\\"+jTNombreCliente.getText()+".pdf";
             ProcessBuilder p=new ProcessBuilder();
             p.command("cmd.exe","/C",url);
             p.start();
