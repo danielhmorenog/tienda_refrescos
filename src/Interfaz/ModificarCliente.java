@@ -1,4 +1,3 @@
-
 package Interfaz;
 
 import java.awt.Image;
@@ -17,22 +16,20 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 //import com.mxrck.autocompleter.TextAutoCompleter;
 
-
 public class ModificarCliente extends javax.swing.JDialog {
-      File fichero;
+
+    File fichero;
     //FileChooser jfchCargarfoto;
-    
+
     public ModificarCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         //TextAutoCompleter text= new TextAutoCompleter(jtProducto);
         //TextAutoCompleter textAutoAcompleter = new TextAutoCompleter( jtCantidad );
-
-         getContentPane().setBackground(new java.awt.Color(178, 34, 34));
+        cargar();
+        getContentPane().setBackground(new java.awt.Color(178, 34, 34));
     }
 
-    
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -46,10 +43,10 @@ public class ModificarCliente extends javax.swing.JDialog {
         jlcodigo1 = new javax.swing.JLabel();
         jbbuscarPRUEBA = new javax.swing.JButton();
         jlfoto1 = new javax.swing.JLabel();
-        jtCEDULA = new javax.swing.JTextField();
         jtNOMBRE = new javax.swing.JTextField();
         jlnombre1 = new javax.swing.JLabel();
         jtTELEFONO = new javax.swing.JTextField();
+        jComboNOMBRE = new javax.swing.JComboBox<>();
 
         jbmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes 2/editnote_edi_9512.png"))); // NOI18N
         jbmodificar.setText("Modificar");
@@ -103,13 +100,6 @@ public class ModificarCliente extends javax.swing.JDialog {
             }
         });
 
-        jtCEDULA.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jtCEDULA.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jtCEDULAKeyPressed(evt);
-            }
-        });
-
         jtNOMBRE.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jtNOMBRE.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -129,6 +119,17 @@ public class ModificarCliente extends javax.swing.JDialog {
             }
         });
 
+        jComboNOMBRE.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                jComboNOMBREComponentHidden(evt);
+            }
+        });
+        jComboNOMBRE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboNOMBREActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -139,16 +140,14 @@ public class ModificarCliente extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jlnombre1)
-                                        .addGap(157, 157, 157)
-                                        .addComponent(jtTELEFONO))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jlnombre)
-                                        .addGap(156, 156, 156)
-                                        .addComponent(jtDIRECION, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jlnombre1)
+                                    .addComponent(jlnombre))
+                                .addGap(158, 158, 158)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtDIRECION, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtTELEFONO, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(26, 26, 26)
                                 .addComponent(jlfoto, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -161,49 +160,44 @@ public class ModificarCliente extends javax.swing.JDialog {
                             .addComponent(jlcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtNOMBRE, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jtCEDULA, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jbbuscarPRUEBA, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(144, Short.MAX_VALUE))
+                                .addComponent(jComboNOMBRE, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jbbuscarPRUEBA, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jtNOMBRE, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(235, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(56, Short.MAX_VALUE)
+                .addContainerGap(62, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jbbuscarPRUEBA, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jtCEDULA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jlcodigo1)))
+                    .addComponent(jlcodigo1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jComboNOMBRE, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlcodigo)
+                    .addComponent(jtNOMBRE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(211, 211, 211)
-                        .addComponent(jlfoto1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlcodigo)
-                            .addComponent(jtNOMBRE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlfoto, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(jlnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(5, 5, 5)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jlnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jtDIRECION, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(17, 17, 17)
-                                        .addComponent(jlnombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jtTELEFONO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jlfoto, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(11, 11, 11)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jlnombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtTELEFONO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbmodificar1)))
+                        .addComponent(jbmodificar1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(168, 168, 168)
+                        .addComponent(jlfoto1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(76, 76, 76))
         );
 
@@ -211,122 +205,91 @@ public class ModificarCliente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbmodificarActionPerformed
-     
-        try
-        {
-          Class.forName("com.mysql.jdbc.Driver");
-          Connection conexion=DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/sql10291222", "sql10291222", "ue73H8XFU1");
-          PreparedStatement ps= conexion.prepareStatement("UPDATE cliente SET nombre1='"+jtNOMBRE.getText()+"',direcion1='"+jtDIRECION.getText()+"',telefono1='"+jtTELEFONO.getText()+"'WHERE cedula1='"+jtCEDULA.getText()+"'");
-          
-          ps.executeUpdate();
-          JOptionPane.showMessageDialog(null, "EL CLIENTE "+jtNOMBRE.getText()+" FUE MODIFICADO CORRECTAMENTE");
-          conexion.close();
-        
-      
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/sql10291222", "sql10291222", "ue73H8XFU1");
+            PreparedStatement ps = conexion.prepareStatement("UPDATE cliente SET nombre1='" + jtNOMBRE.getText() + "',direcion1='" + jtDIRECION.getText() + "',telefono1='" + jtTELEFONO.getText() + "'WHERE cedula1='" + jComboNOMBRE.getSelectedIndex()+ "'");
+
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "EL CLIENTE " + jtNOMBRE.getText() + " FUE MODIFICADO CORRECTAMENTE");
+            conexion.close();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error " + e);
         }
-        
-        catch(Exception e)
-        {
-          JOptionPane.showMessageDialog(null,"Error "+e);
-        }
-        
+
     }//GEN-LAST:event_jbmodificarActionPerformed
 
     private void jbmodificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbmodificar1ActionPerformed
 
-         try
-        {
-          Class.forName("com.mysql.jdbc.Driver");
-          Connection conexion=DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/sql10292471", "sql10292471", "5smwscQGBg");
-          PreparedStatement ps= conexion.prepareStatement("UPDATE cliente SET nombre1='"+jtNOMBRE.getText()+"',direcion1='"+jtDIRECION.getText()+"',telefono1='"+jtTELEFONO.getText()+"'WHERE cedula1='"+jtCEDULA.getText()+"'");
-          
-          ps.executeUpdate();
-          JOptionPane.showMessageDialog(null, "EL CLIENTE "+jtNOMBRE.getText()+" FUE MODIFICADO CORRECTAMENTE");
-          conexion.close();
-        
-          jtCEDULA.setText("");
-          jtNOMBRE.setText("");
-          jtDIRECION.setText("");
-          jtTELEFONO.setText("");
-      
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/sql10292471", "sql10292471", "5smwscQGBg");
+            PreparedStatement ps = conexion.prepareStatement("UPDATE cliente SET nombre1='" + jtNOMBRE.getText() + "',direcion1='" + jtDIRECION.getText() + "',telefono1='" + jtTELEFONO.getText() + "'WHERE cedula1='" + jComboNOMBRE.getSelectedItem() + "'");
+
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "EL CLIENTE " + jtNOMBRE.getText() + " FUE MODIFICADO CORRECTAMENTE");
+            conexion.close();
+
+            jtNOMBRE.setText("");
+            jtDIRECION.setText("");
+            jtTELEFONO.setText("");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error " + e);
         }
-         
-        
-        catch(Exception e)
-        {
-          JOptionPane.showMessageDialog(null,"Error "+e);
-        }
-        
+
 
     }//GEN-LAST:event_jbmodificar1ActionPerformed
 
     private void jtDIRECIONKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDIRECIONKeyPressed
-        if(evt.getKeyCode()==40)
-        {
-           // jtCantidad.requestFocus();
-            System.out.println("Pressed "+evt.getKeyCode()) ;
+        if (evt.getKeyCode() == 40) {
+            // jtCantidad.requestFocus();
+            System.out.println("Pressed " + evt.getKeyCode());
         }
-        if(evt.getKeyCode()==38)
-        {
-           // jtProducto.requestFocus();
-            System.out.println("Pressed "+evt.getKeyCode()) ;
+        if (evt.getKeyCode() == 38) {
+            // jtProducto.requestFocus();
+            System.out.println("Pressed " + evt.getKeyCode());
         }
     }//GEN-LAST:event_jtDIRECIONKeyPressed
 
-    
-    
+
     private void jbbuscarPRUEBAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbbuscarPRUEBAActionPerformed
-        
+
         ImageIcon foto;
         InputStream is;
-    	try{
-            
-            
-            
-    		Class.forName("com.mysql.jdbc.Driver");
-    		Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/sql10292471", "sql10292471", "5smwscQGBg");
-    		Statement s = conexion.createStatement();
-    		//ResultSet r = s.executeQuery("select NombreProducto from productosnuevos where Categorias="+"'"+jComboCategorias.getSelectedItem()+"'");
-    		 ResultSet r = s.executeQuery("select * from cliente where cedula1="+"'"+jtCEDULA.getText()+"'");    
-                while(r.next()){
+        try {
 
-                    
-                        
-                        jtNOMBRE.setText(r.getObject(2)+"");
-                        jtDIRECION.setText(r.getObject(3)+"");
-                        jtTELEFONO.setText(r.getObject(4)+"");
-                        jlfoto.setText(r.getObject(5)+"");
-                        
-                        
-                       
-                        
-                        
-                        
-                         foto=new ImageIcon(jlfoto.getText());
-                         
-                         Image img= foto.getImage();
-                         Image newimg=img.getScaledInstance(140, 170,java.awt.Image.SCALE_SMOOTH);
-                         
-                         ImageIcon newIcon=new ImageIcon(newimg);
-                         jlfoto.setIcon(newIcon);
-                       
-                         
-                }
-    		conexion.close();
-             
-    		
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/sql10292471", "sql10292471", "5smwscQGBg");
+            Statement s = conexion.createStatement();
+            //ResultSet r = s.executeQuery("select NombreProducto from productosnuevos where Categorias="+"'"+jComboCategorias.getSelectedItem()+"'");
+            ResultSet r = s.executeQuery("select * from cliente where cedula1=" + "'" + jComboNOMBRE.getSelectedItem() + "'");
+            while (r.next()) {
+
+                jtNOMBRE.setText(r.getObject(2) + "");
+                jtDIRECION.setText(r.getObject(3) + "");
+                jtTELEFONO.setText(r.getObject(4) + "");
+                jlfoto.setText(r.getObject(5) + "");
+
+                foto = new ImageIcon(jlfoto.getText());
+
+                Image img = foto.getImage();
+                Image newimg = img.getScaledInstance(140, 170, java.awt.Image.SCALE_SMOOTH);
+
+                ImageIcon newIcon = new ImageIcon(newimg);
+                jlfoto.setIcon(newIcon);
+
+            }
+            conexion.close();
+
+        } catch (Exception x) {
+            JOptionPane.showMessageDialog(null, "CODIGO NO EXISTE " + x);
         }
-    	catch(Exception x)
-        {
-    		JOptionPane.showMessageDialog(null,"CODIGO NO EXISTE "+x);
-    	}
-        
-        
-    }//GEN-LAST:event_jbbuscarPRUEBAActionPerformed
 
-    private void jtCEDULAKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtCEDULAKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtCEDULAKeyPressed
+
+    }//GEN-LAST:event_jbbuscarPRUEBAActionPerformed
 
     private void jtNOMBREKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNOMBREKeyPressed
         // TODO add your handling code here:
@@ -336,31 +299,33 @@ public class ModificarCliente extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtTELEFONOKeyPressed
 
-    
-    
-    public void cargar()
-    {
-        try{
-    		Class.forName("com.mysql.jdbc.Driver");
-    		Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/tiendahelados", "root", "");
-    		Statement s = conexion.createStatement();
-    		ResultSet r = s.executeQuery("select * from productosnuevos;");
-               // jcombo.removeAllItems();
-                while(r.next())
-                {
-    		//jcombo.addItem(r.getString("placa")+" "+(r.getString("Propietario")));
-//                   jComboBox1.addItem(r.getObject("NombreProducto"));
-                }
-    		conexion.close();
-    		}
-    	catch(Exception x)
-        {
-    		JOptionPane.showMessageDialog(null,"Error "+x);
-    	}
-        
+    private void jComboNOMBREComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jComboNOMBREComponentHidden
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboNOMBREComponentHidden
+
+    private void jComboNOMBREActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboNOMBREActionPerformed
+
+        jComboNOMBRE.getSelectedItem();
+    }//GEN-LAST:event_jComboNOMBREActionPerformed
+
+    public void cargar() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/sql10292471", "sql10292471", "5smwscQGBg");
+            Statement s = conexion.createStatement();
+            ResultSet r = s.executeQuery("select * from cliente;");
+            jComboNOMBRE.removeAllItems();
+            while (r.next()) {
+                //jComboNOMBRE.addItem(r.getString("nit")+" "+(r.getString("nombre")));
+                jComboNOMBRE.addItem(r.getString("cedula1"));
+            }
+            conexion.close();
+        } catch (Exception x) {
+            JOptionPane.showMessageDialog(null, "Error " + x);
+        }
+
     }
-    
-    
+
     /**
      * @param args the command line arguments
      */
@@ -419,6 +384,7 @@ public class ModificarCliente extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> jComboNOMBRE;
     private javax.swing.JButton jbbuscarPRUEBA;
     private javax.swing.JButton jbmodificar;
     private javax.swing.JButton jbmodificar1;
@@ -428,7 +394,6 @@ public class ModificarCliente extends javax.swing.JDialog {
     private javax.swing.JLabel jlfoto1;
     private javax.swing.JLabel jlnombre;
     private javax.swing.JLabel jlnombre1;
-    public javax.swing.JTextField jtCEDULA;
     public javax.swing.JTextField jtDIRECION;
     public javax.swing.JTextField jtNOMBRE;
     public javax.swing.JTextField jtTELEFONO;
