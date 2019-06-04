@@ -574,7 +574,6 @@ Paragraph parrafo1 = new Paragraph("FACTURA DE COMPRA \n TOTAL A PAGAR $"+sum+"\
          
           ps.execute();
           conexion.close();
-          JOptionPane.showMessageDialog(null, "ENTRO BASE DATOS");
           }
           
              
