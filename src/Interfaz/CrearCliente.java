@@ -301,7 +301,7 @@ public class CrearCliente extends javax.swing.JDialog {
           conexion.close();
           
           //FileOutputStream file = new FileOutputStream(""+jtPlaca.getText()+".xls");
-          JOptionPane.showMessageDialog(null, "<html><h1>EL CLIENTE CON LA CÉDULA  "+jtNombreCli.getText()+" <html><h1>FUE CREADO CORRECTAMENTE");
+          JOptionPane.showMessageDialog(null, "<html><h1>EL CLIENTE CON EL NOMBRE  "+jtNombreCli.getText()+" <html><h1>FUE CREADO CORRECTAMENTE");
           jtcedula.setText("");
           jtNombreCli.setText("");
           jtDirecionCli.setText("");
