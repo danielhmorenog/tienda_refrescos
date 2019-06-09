@@ -1,48 +1,27 @@
-
 package Interfaz;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-//import javafx.stage.FileChooser;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.text.Document;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-
 
 public class CrearCliente extends javax.swing.JDialog {
 
     File fichero;
-    
+
     //FileChooser jfchCargarfoto;
-  
-   
-    
     public CrearCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-         getContentPane().setBackground(new java.awt.Color(178, 34, 34));
-         
-         
-          
+        getContentPane().setBackground(new java.awt.Color(178, 34, 34));
+
     }
 
-   
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -107,7 +86,7 @@ public class CrearCliente extends javax.swing.JDialog {
         });
 
         jlfotoCli.setFont(new java.awt.Font("Tahoma", 0, 1)); // NOI18N
-        jlfotoCli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Usuario-Icono.jpg"))); // NOI18N
+        jlfotoCli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes 2/Usuario-Icono.jpg"))); // NOI18N
         jlfotoCli.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jbfoto.setText("AGREGAR FOTO");
@@ -272,51 +251,41 @@ public class CrearCliente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbguardarActionPerformed
-        
+
+        if (jtNombreCli.getText().equals("") || jtDirecionCli.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "TIENE UN CAMPO VACIO \n COMPLETE LOS CAMPOS");
+            return;
+        }
+
+        try {
+
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/sql10294978", "sql10294978", "PaX2rTpupV");
+            PreparedStatement ps = conexion.prepareStatement("insert into cliente values(?,?,?,?,?)");
+            ps.setString(1, (jtcedula.getText()));
+            ps.setString(2, (jtNombreCli.getText()));
+            ps.setString(3, jtDirecionCli.getText());
+            ps.setString(4, jtTelefonoCli.getText());
+            ps.setObject(5, jlfoto1.getText());
+
+            ps.execute();
+            conexion.close();
+
+            //FileOutputStream file = new FileOutputStream(""+jtPlaca.getText()+".xls");
+            JOptionPane.showMessageDialog(null, "<html><h1>EL CLIENTE CON EL NOMBRE  " + jtNombreCli.getText() + " <html><h1>FUE CREADO CORRECTAMENTE");
+            jtcedula.setText("");
+            jtNombreCli.setText("");
+            jtDirecionCli.setText("");
+            jlfotoCli.setText(null);
+            jtTelefonoCli.setText("");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ya existe un Cliente con el codigo " + e);
+            System.out.println("error  " + e);
+
+        }
 
 
-        
-        if(jtNombreCli.getText().equals("") || jtDirecionCli.getText().equals(""))
-        {
-        JOptionPane.showMessageDialog(null, "TIENE UN CAMPO VACIO \n COMPLETE LOS CAMPOS");
-        return;
-        }
-        
-        try
-        {
-            
-            
-          Class.forName("com.mysql.jdbc.Driver");
-          Connection conexion=DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/sql10292471", "sql10292471", "5smwscQGBg");
-          PreparedStatement ps= conexion.prepareStatement("insert into cliente values(?,?,?,?,?)");
-          ps.setString(1,(jtcedula.getText()));
-          ps.setString(2,(jtNombreCli.getText()));
-          ps.setString(3, jtDirecionCli.getText());
-           ps.setString(4, jtTelefonoCli.getText());
-          ps.setObject(5, jlfoto1.getText());
-          
-          
-         
-          ps.execute();
-          conexion.close();
-          
-          //FileOutputStream file = new FileOutputStream(""+jtPlaca.getText()+".xls");
-          JOptionPane.showMessageDialog(null, "<html><h1>EL CLIENTE CON EL NOMBRE  "+jtNombreCli.getText()+" <html><h1>FUE CREADO CORRECTAMENTE");
-          jtcedula.setText("");
-          jtNombreCli.setText("");
-          jtDirecionCli.setText("");
-          jlfotoCli.setText(null);
-          jtTelefonoCli.setText("");
-                  
-        }
-        catch(Exception e)
-        {
-          JOptionPane.showMessageDialog(null,"Ya existe un Cliente con el codigo "+e);
-            System.out.println("error  "+e);
-          
-        }
-        
-    
     }//GEN-LAST:event_jbguardarActionPerformed
 
     private void jtNombreCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtNombreCliActionPerformed
@@ -324,34 +293,30 @@ public class CrearCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_jtNombreCliActionPerformed
 
     private void jtNombreCliKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreCliKeyPressed
-      if(evt.getKeyCode()==40)
-             {
-                jtDirecionCli.requestFocus();
-                 System.out.println("Pressed "+evt.getKeyCode()) ; 
-              }
-      
+        if (evt.getKeyCode() == 40) {
+            jtDirecionCli.requestFocus();
+            System.out.println("Pressed " + evt.getKeyCode());
+        }
+
     }//GEN-LAST:event_jtNombreCliKeyPressed
 
     private void jtDirecionCliKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDirecionCliKeyPressed
-      if(evt.getKeyCode()==40)
-             {
-                
-                 System.out.println("Pressed "+evt.getKeyCode()) ; 
-              }
-      if(evt.getKeyCode()==38)
-             {
-                jtNombreCli.requestFocus();
-                 System.out.println("Pressed "+evt.getKeyCode()) ; 
-              }
+        if (evt.getKeyCode() == 40) {
+
+            System.out.println("Pressed " + evt.getKeyCode());
+        }
+        if (evt.getKeyCode() == 38) {
+            jtNombreCli.requestFocus();
+            System.out.println("Pressed " + evt.getKeyCode());
+        }
     }//GEN-LAST:event_jtDirecionCliKeyPressed
 
     private void jbguardarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jbguardarKeyPressed
-       if(evt.getKeyCode()==10)
-             {
-                jbguardarActionPerformed(null);
-                 System.out.println("Pressed "+evt.getKeyCode()) ; 
-                 System.out.println("Pressed "+evt.getKeyCode()) ; 
-              }
+        if (evt.getKeyCode() == 10) {
+            jbguardarActionPerformed(null);
+            System.out.println("Pressed " + evt.getKeyCode());
+            System.out.println("Pressed " + evt.getKeyCode());
+        }
     }//GEN-LAST:event_jbguardarKeyPressed
 
     private void jbfotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbfotoActionPerformed
@@ -359,35 +324,34 @@ public class CrearCliente extends javax.swing.JDialog {
 
         CargarFoto ventana = new CargarFoto();
 
-        FileNameExtensionFilter filtro =
-        new FileNameExtensionFilter("JPG y PNG","jpg","png");
+        FileNameExtensionFilter filtro
+                = new FileNameExtensionFilter("JPG y PNG", "jpg", "png");
 
         ventana.jFfoto.setFileFilter(filtro);
 
-        resultado= ventana.jFfoto.showOpenDialog(null);
+        resultado = ventana.jFfoto.showOpenDialog(null);
 
-        if (JFileChooser.APPROVE_OPTION == resultado){
+        if (JFileChooser.APPROVE_OPTION == resultado) {
 
             fichero = ventana.jFfoto.getSelectedFile();
 
-            try{
+            try {
 
                 ImageIcon icon = new ImageIcon(fichero.toString());
 
                 Icon icono = new ImageIcon(icon.getImage().
-                    getScaledInstance(60, 70, 45));
+                        getScaledInstance(60, 70, 45));
 
                 //foto.setText(null);
-
-                jlfoto1.setText(""+fichero);
-                System.out.println("fichero "+fichero);
+                jlfoto1.setText("" + fichero);
+                System.out.println("fichero " + fichero);
 
                 jlfotoCli.setIcon(icono);
 
-            }catch(Exception ex){
+            } catch (Exception ex) {
 
                 JOptionPane.showMessageDialog(null,
-                    "Error abriendo la imagen "+ ex);
+                        "Error abriendo la imagen " + ex);
 
             }
 
@@ -402,7 +366,6 @@ public class CrearCliente extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtTelefonoCliKeyPressed
 
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -426,7 +389,7 @@ public class CrearCliente extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(CrearCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {

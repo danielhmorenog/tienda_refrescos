@@ -8,18 +8,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-//import javafx.stage.FileChooser;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
-//import com.mxrck.autocompleter.TextAutoCompleter;
 
 public class ModificarCliente extends javax.swing.JDialog {
 
     File fichero;
-    //FileChooser jfchCargarfoto;
 
     public ModificarCliente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -209,7 +203,7 @@ public class ModificarCliente extends javax.swing.JDialog {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/sql10291222", "sql10291222", "ue73H8XFU1");
-            PreparedStatement ps = conexion.prepareStatement("UPDATE cliente SET nombre1='" + jtNOMBRE.getText() + "',direcion1='" + jtDIRECION.getText() + "',telefono1='" + jtTELEFONO.getText() + "'WHERE cedula1='" + jComboNOMBRE.getSelectedIndex()+ "'");
+            PreparedStatement ps = conexion.prepareStatement("UPDATE cliente SET nombre1='" + jtNOMBRE.getText() + "',direcion1='" + jtDIRECION.getText() + "',telefono1='" + jtTELEFONO.getText() + "'WHERE cedula1='" + jComboNOMBRE.getSelectedIndex() + "'");
 
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "EL CLIENTE " + jtNOMBRE.getText() + " FUE MODIFICADO CORRECTAMENTE");
@@ -225,7 +219,7 @@ public class ModificarCliente extends javax.swing.JDialog {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/sql10292471", "sql10292471", "5smwscQGBg");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/sql10294978", "sql10294978", "PaX2rTpupV");
             PreparedStatement ps = conexion.prepareStatement("UPDATE cliente SET nombre1='" + jtNOMBRE.getText() + "',direcion1='" + jtDIRECION.getText() + "',telefono1='" + jtTELEFONO.getText() + "'WHERE cedula1='" + jComboNOMBRE.getSelectedItem() + "'");
 
             ps.executeUpdate();
@@ -262,7 +256,7 @@ public class ModificarCliente extends javax.swing.JDialog {
         try {
 
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/sql10292471", "sql10292471", "5smwscQGBg");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/sql10294978", "sql10294978", "PaX2rTpupV");
             Statement s = conexion.createStatement();
             //ResultSet r = s.executeQuery("select NombreProducto from productosnuevos where Categorias="+"'"+jComboCategorias.getSelectedItem()+"'");
             ResultSet r = s.executeQuery("select * from cliente where cedula1=" + "'" + jComboNOMBRE.getSelectedItem() + "'");
@@ -311,7 +305,7 @@ public class ModificarCliente extends javax.swing.JDialog {
     public void cargar() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/sql10292471", "sql10292471", "5smwscQGBg");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/sql10294978", "sql10294978", "PaX2rTpupV");
             Statement s = conexion.createStatement();
             ResultSet r = s.executeQuery("select * from cliente;");
             jComboNOMBRE.removeAllItems();

@@ -1,46 +1,34 @@
-
 package Interfaz;
 
-
-import java.awt.Color;
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-
 
 public class Admin extends javax.swing.JDialog {
 
-    
     public Menu parent;
-    String codi,nombre;
-    String cap="";
-    String usuarioo="";
-    static String user="";
+    String codi, nombre;
+    String cap = "";
+    String usuarioo = "";
+    static String user = "";
     Statement s;
-    
+
     String guardar;
-    
-   
-    String passw="";
+
+    String passw = "";
+
     public Admin(Menu parent, boolean modal) {
         super(parent, modal);
-        this.parent=parent;
-        
-        
-        
+        this.parent = parent;
+
         initComponents();
         getContentPane().setBackground(new java.awt.Color(178, 34, 34));
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -83,7 +71,7 @@ public class Admin extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes 2/1.jpg"))); // NOI18N
 
         jPcontraseña.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jPcontraseña.addActionListener(new java.awt.event.ActionListener() {
@@ -147,107 +135,91 @@ public class Admin extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAceptarActionPerformed
-      try{
-          if(jPcontraseña.getText().equals("") || jtusuario.getText().equals(""))
-          {
-              JOptionPane.showMessageDialog(null,"Tiene un campo vacio \n Complete el campo");
-              return;
-          }
-               
-    		Class.forName("com.mysql.jdbc.Driver");
-                try (Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/sql10292471", "sql10292471", "5smwscQGBg")) {
-                    Statement s = conexion.createStatement();
-                    ResultSet r = s.executeQuery("select usurio1,contraseña1 from admin1 where contraseña1="+"'"+jPcontraseña.getText()+"'"+" and usurio1="+"'"+jtusuario.getText()+"'");
-                   // ResultSet r = s.executeQuery("select Codigo,contraseña from admin where contraseña="+"'"+jPcontraseña.getText()+"'");
-                    while(r.next())
-                    {
-                      
-                       // cap=r.getString(1);
-                        usuarioo=r.getString(1);
-                        user=r.getString(2);
-                        
-                        System.out.println("contraseña "+user);
-                        System.out.println("usuario "+usuarioo);
-                        
-                    }
-                    if(user.equals(jPcontraseña.getText()) && usuarioo.equals(jtusuario.getText()))
-                    {
-                        this.setVisible(false);
-                        JOptionPane.showMessageDialog(null,"Logeo Exitoso ' Administrador '");
-                        
-                        
-                        Menu menu=new Menu();
-                        menu.setSize(863,367);
-                        menu.setVisible(true);
-                        menu.setResizable(false);
-                        menu.setLocationRelativeTo(null);
-                        
-                        menu.pack();
-                        
-                    }
-                    else
-                    {
-                        JOptionPane.showMessageDialog(null,"Usuario o contraseña \n del Admin es Incorrecta  ");  
-                        jtusuario.setText("");
-                        jPcontraseña.setText("");
-                    }
+        try {
+            if (jPcontraseña.getText().equals("") || jtusuario.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Tiene un campo vacio \n Complete el campo");
+                return;
+            }
+
+            Class.forName("com.mysql.jdbc.Driver");
+            try (Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/sql10294978", "sql10294978", "PaX2rTpupV")) {
+                Statement s = conexion.createStatement();
+                ResultSet r = s.executeQuery("select usurio1,contraseña1 from admin1 where contraseña1=" + "'" + jPcontraseña.getText() + "'" + " and usurio1=" + "'" + jtusuario.getText() + "'");
+                // ResultSet r = s.executeQuery("select Codigo,contraseña from admin where contraseña="+"'"+jPcontraseña.getText()+"'");
+                while (r.next()) {
+
+                    // cap=r.getString(1);
+                    usuarioo = r.getString(1);
+                    user = r.getString(2);
+
+                    System.out.println("contraseña " + user);
+                    System.out.println("usuario " + usuarioo);
+
                 }
-          }
-    	catch(ClassNotFoundException | SQLException | HeadlessException x)
-        {
-    		JOptionPane.showMessageDialog(null,"Erroraaa "+x.getMessage());
-    	}
+                if (user.equals(jPcontraseña.getText()) && usuarioo.equals(jtusuario.getText())) {
+                    this.setVisible(false);
+                    JOptionPane.showMessageDialog(null, "Logeo Exitoso ' Administrador '");
+
+                    Menu menu = new Menu();
+                    menu.setSize(863, 367);
+                    menu.setVisible(true);
+                    menu.setResizable(false);
+                    menu.setLocationRelativeTo(null);
+
+                    menu.pack();
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Usuario o contraseña \n del Admin es Incorrecta  ");
+                    jtusuario.setText("");
+                    jPcontraseña.setText("");
+                }
+            }
+        } catch (ClassNotFoundException | SQLException | HeadlessException x) {
+            JOptionPane.showMessageDialog(null, "Erroraaa " + x.getMessage());
+        }
     }//GEN-LAST:event_jbAceptarActionPerformed
 
-    
-    
-    
+
     private void jPcontraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPcontraseñaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPcontraseñaActionPerformed
 
     private void jbAceptarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jbAceptarKeyPressed
-         
-         if(evt.getKeyCode()==10)
-             {
-                 jbAceptarActionPerformed(null);
-                 System.out.println("Pressed "+evt.getKeyCode()) ; 
-              }
-        if(evt.getKeyCode()==109)
-             {
-                jPcontraseña.requestFocus();
-                 System.out.println("Pressed "+evt.getKeyCode()) ; 
-              }
+
+        if (evt.getKeyCode() == 10) {
+            jbAceptarActionPerformed(null);
+            System.out.println("Pressed " + evt.getKeyCode());
+        }
+        if (evt.getKeyCode() == 109) {
+            jPcontraseña.requestFocus();
+            System.out.println("Pressed " + evt.getKeyCode());
+        }
     }//GEN-LAST:event_jbAceptarKeyPressed
 
     private void jPcontraseñaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPcontraseñaKeyPressed
-      if(evt.getKeyCode()==38)
-             {
-                jtusuario.requestFocus();
-                 System.out.println("Pressed "+evt.getKeyCode()) ; 
-              }
-      if(evt.getKeyCode()==40)
-             {
-                jbAceptar.requestFocus();
-                 System.out.println("Pressed "+evt.getKeyCode()) ; 
-              }
-        if(evt.getKeyCode()==10)
-             {
-                //jPcontraseña.requestFocus();
-                jbAceptarActionPerformed(null);
-                int tecla = evt.getKeyCode(); 
-                 System.out.println("Pressed "+evt.getKeyCode()+ " "+tecla) ; 
-              }
+        if (evt.getKeyCode() == 38) {
+            jtusuario.requestFocus();
+            System.out.println("Pressed " + evt.getKeyCode());
+        }
+        if (evt.getKeyCode() == 40) {
+            jbAceptar.requestFocus();
+            System.out.println("Pressed " + evt.getKeyCode());
+        }
+        if (evt.getKeyCode() == 10) {
+            //jPcontraseña.requestFocus();
+            jbAceptarActionPerformed(null);
+            int tecla = evt.getKeyCode();
+            System.out.println("Pressed " + evt.getKeyCode() + " " + tecla);
+        }
     }//GEN-LAST:event_jPcontraseñaKeyPressed
 
     private void jtusuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtusuarioKeyPressed
-       if(evt.getKeyCode()==40)
-             {
-                jPcontraseña.requestFocus();
-               
-                 System.out.println("Pressed "+evt.getKeyCode()) ; 
-              }
-       
+        if (evt.getKeyCode() == 40) {
+            jPcontraseña.requestFocus();
+
+            System.out.println("Pressed " + evt.getKeyCode());
+        }
+
     }//GEN-LAST:event_jtusuarioKeyPressed
 
     /**

@@ -1,4 +1,3 @@
-
 package Interfaz;
 
 import java.awt.Image;
@@ -9,51 +8,37 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-//import javafx.stage.FileChooser;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
-//import com.mxrck.autocompleter.TextAutoCompleter;
-
 
 public class ModificarProducto extends javax.swing.JDialog {
-      File fichero;
-    //FileChooser jfchCargarfoto;
-    
+
+    File fichero;
+
     public ModificarProducto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        //TextAutoCompleter text= new TextAutoCompleter(jtProducto);
-        //TextAutoCompleter textAutoAcompleter = new TextAutoCompleter( jtCantidad );
-cargar();
-         getContentPane().setBackground(new java.awt.Color(178, 34, 34));
+        cargar();
+        getContentPane().setBackground(new java.awt.Color(178, 34, 34));
     }
 
-     public void cargar()
-    {
-        try{
-    		Class.forName("com.mysql.jdbc.Driver");
-    		Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/sql10292471", "sql10292471", "5smwscQGBg");
-    		Statement s = conexion.createStatement();
-    		ResultSet r = s.executeQuery("select * from productos;");
-                jComboNOMBRE.removeAllItems();
-                while(r.next())
-                {
-    		//jComboNOMBRE.addItem(r.getString("nit")+" "+(r.getString("nombre")));
-                    jComboNOMBRE.addItem(r.getString("nombreProd1"));
-                }
-    		conexion.close();
-    		}
-    	catch(Exception x)
-        {
-    		JOptionPane.showMessageDialog(null,"Error "+x);
-    	}
-        
+    public void cargar() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/sql10294978", "sql10294978", "PaX2rTpupV");
+            Statement s = conexion.createStatement();
+            ResultSet r = s.executeQuery("select * from productos;");
+            jComboNOMBRE.removeAllItems();
+            while (r.next()) {
+                jComboNOMBRE.addItem(r.getString("nombreProd1"));
+            }
+            conexion.close();
+        } catch (Exception x) {
+            JOptionPane.showMessageDialog(null, "Error " + x);
+        }
+
     }
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -225,47 +210,35 @@ cargar();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbmodificarActionPerformed
-     
-        try
-        {
-          Class.forName("com.mysql.jdbc.Driver");
-          Connection conexion=DriverManager.getConnection("jdbc:mysql://localhost/moto" ,"root","");
-          //PreparedStatement ps= conexion.prepareStatement("UPDATE crearmoto SET PrecioProducto='"+jtCANTIDAD.getText()+"'WHERE placa='"+jComboBox1.getSelectedItem()+"'");
-            PreparedStatement ps= conexion.prepareStatement("UPDATE productos SET nombreprod1='"+jtNOMBRE.getText()+"',cantidadpro1='"+jtCANTIDAD.getText()+"',preciopro1='"+jtPRECIO.getText()+"'WHERE nombreProd1='"+jComboNOMBRE.getSelectedItem()+"'");
-          ps.executeUpdate();
-          JOptionPane.showMessageDialog(null, "EL PRODUCTO "+jtNOMBRE.getText()+"FUE MODIFICADO CORRECTAMENTE");
-          conexion.close();
-        
-      
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/moto", "root", "");
+            PreparedStatement ps = conexion.prepareStatement("UPDATE productos SET nombreprod1='" + jtNOMBRE.getText() + "',cantidadpro1='" + jtCANTIDAD.getText() + "',preciopro1='" + jtPRECIO.getText() + "'WHERE nombreProd1='" + jComboNOMBRE.getSelectedItem() + "'");
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "EL PRODUCTO " + jtNOMBRE.getText() + "FUE MODIFICADO CORRECTAMENTE");
+            conexion.close();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error " + e);
         }
-        
-        catch(Exception e)
-        {
-          JOptionPane.showMessageDialog(null,"Error "+e);
-        }
-        
+
     }//GEN-LAST:event_jbmodificarActionPerformed
 
     private void jbmodificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbmodificar1ActionPerformed
 
-        try
-        {
-          Class.forName("com.mysql.jdbc.Driver");
-          Connection conexion=DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/sql10292471", "sql10292471", "5smwscQGBg");
-          //PreparedStatement ps= conexion.prepareStatement("UPDATE crearmoto SET PrecioProducto='"+jtCANTIDAD.getText()+"'WHERE placa='"+jComboBox1.getSelectedItem()+"'");
-            PreparedStatement ps= conexion.prepareStatement("UPDATE productos SET nombreProd1='"+jtNOMBRE.getText()+"',cantidadProd1='"+jtCANTIDAD.getText()+"',precioProd1='"+jtPRECIO.getText()+"'WHERE nombreProd1='"+jComboNOMBRE.getSelectedItem()+"'");
-          ps.executeUpdate();
-          JOptionPane.showMessageDialog(null, "EL PRODUCTO "+jtNOMBRE.getText()+" FUE MODIFICADO CORRECTAMENTE");
-          conexion.close();
-        
-      
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/sql10294978", "sql10294978", "PaX2rTpupV");
+            PreparedStatement ps = conexion.prepareStatement("UPDATE productos SET nombreProd1='" + jtNOMBRE.getText() + "',cantidadProd1='" + jtCANTIDAD.getText() + "',precioProd1='" + jtPRECIO.getText() + "'WHERE nombreProd1='" + jComboNOMBRE.getSelectedItem() + "'");
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "EL PRODUCTO " + jtNOMBRE.getText() + " FUE MODIFICADO CORRECTAMENTE");
+            conexion.close();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error " + e);
         }
-        
-        catch(Exception e)
-        {
-          JOptionPane.showMessageDialog(null,"Error "+e);
-        }
-       
+
         jtNOMBRE.setText("");
         jtCANTIDAD.setText("");
         jtPRECIO.setText("");
@@ -273,20 +246,15 @@ cargar();
     }//GEN-LAST:event_jbmodificar1ActionPerformed
 
     private void jtCANTIDADKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtCANTIDADKeyPressed
-        if(evt.getKeyCode()==40)
-        {
-           // jtCantidad.requestFocus();
-            System.out.println("Pressed "+evt.getKeyCode()) ;
+        if (evt.getKeyCode() == 40) {
+            System.out.println("Pressed " + evt.getKeyCode());
         }
-        if(evt.getKeyCode()==38)
-        {
-           // jtProducto.requestFocus();
-            System.out.println("Pressed "+evt.getKeyCode()) ;
+        if (evt.getKeyCode() == 38) {
+            System.out.println("Pressed " + evt.getKeyCode());
         }
     }//GEN-LAST:event_jtCANTIDADKeyPressed
 
-    
-    
+
     private void jComboNOMBREComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jComboNOMBREComponentHidden
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboNOMBREComponentHidden
@@ -309,44 +277,37 @@ cargar();
 
         ImageIcon foto;
         InputStream is;
-        try{
+        try {
 
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/sql10292471", "sql10292471", "5smwscQGBg");
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/sql10294978", "sql10294978", "PaX2rTpupV");
             Statement s = conexion.createStatement();
-            ResultSet r = s.executeQuery("select * from productos where nombreProd1="+"'"+jComboNOMBRE.getSelectedItem()+"'");
+            ResultSet r = s.executeQuery("select * from productos where nombreProd1=" + "'" + jComboNOMBRE.getSelectedItem() + "'");
 
-            while(r.next()){
+            while (r.next()) {
 
-                jtNOMBRE.setText(r.getObject(2)+"");
-                jtCANTIDAD.setText(r.getObject(3)+"");
-                jtPRECIO.setText(r.getObject(4)+"");
-                jlfoto.setText(r.getObject(5)+"");
+                jtNOMBRE.setText(r.getObject(2) + "");
+                jtCANTIDAD.setText(r.getObject(3) + "");
+                jtPRECIO.setText(r.getObject(4) + "");
+                jlfoto.setText(r.getObject(5) + "");
 
-                foto=new ImageIcon(jlfoto.getText());
+                foto = new ImageIcon(jlfoto.getText());
 
-                Image img= foto.getImage();
-                Image newimg=img.getScaledInstance(140, 170,java.awt.Image.SCALE_SMOOTH);
+                Image img = foto.getImage();
+                Image newimg = img.getScaledInstance(140, 170, java.awt.Image.SCALE_SMOOTH);
 
-                ImageIcon newIcon=new ImageIcon(newimg);
+                ImageIcon newIcon = new ImageIcon(newimg);
                 jlfoto.setIcon(newIcon);
 
             }
             conexion.close();
 
-        }
-
-        catch(Exception x)
-        {
-            JOptionPane.showMessageDialog(null,"CODIGO NO EXISTE "+x);
+        } catch (Exception x) {
+            JOptionPane.showMessageDialog(null, "CODIGO NO EXISTE " + x);
         }
 
     }//GEN-LAST:event_jbbuscarActionPerformed
 
-    
-    
-    
-    
     /**
      * @param args the command line arguments
      */

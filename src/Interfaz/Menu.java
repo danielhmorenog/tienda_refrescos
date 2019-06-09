@@ -1,31 +1,22 @@
-
 package Interfaz;
 
-import com.sun.xml.internal.txw2.Document;
 import java.awt.Color;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import javax.swing.JOptionPane;
-
 
 public class Menu extends javax.swing.JFrame {
-     Calendar fecha;
+
+    Calendar fecha;
     int res;
     int sol;
     String fechas;
-    
-    
+
     public Menu() {
         initComponents();
         fecha = new GregorianCalendar();
-        
+
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -132,59 +123,56 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ModificarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarClienteActionPerformed
-        ModificarCliente modi=new ModificarCliente(this,true); 
-        modi.setSize(870,400);
+        ModificarCliente modi = new ModificarCliente(this, true);
+        modi.setSize(870, 400);
         modi.setLocationRelativeTo(null);
         modi.setVisible(true);
-        
+
     }//GEN-LAST:event_ModificarClienteActionPerformed
-//
+
     private void jiregistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jiregistroActionPerformed
-        
-        
-         AdminInventario admin=new AdminInventario(null,true); 
-        
-        admin.setSize(400,200);
+
+        AdminInventario admin = new AdminInventario(null, true);
+
+        admin.setSize(400, 200);
         admin.setLocationRelativeTo(null);
         admin.setResizable(false);
         admin.setVisible(true);
-        admin.getContentPane().setBackground(new Color(0,0,0));     
+        admin.getContentPane().setBackground(new Color(0, 0, 0));
 
-   
+
     }//GEN-LAST:event_jiregistroActionPerformed
 
     private void jiHistorialClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jiHistorialClienteActionPerformed
-       Historial modi=new Historial(this,true); 
-       modi.setSize(1250,650);
-       modi.setLocationRelativeTo(null);
-       modi.setVisible(true);
+        Historial modi = new Historial(this, true);
+        modi.setSize(1250, 650);
+        modi.setLocationRelativeTo(null);
+        modi.setVisible(true);
     }//GEN-LAST:event_jiHistorialClienteActionPerformed
 
     private void CrearCLienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearCLienteActionPerformed
 
-        CrearCliente cre=new CrearCliente(null,true);
-        cre.setSize(870,400);
+        CrearCliente cre = new CrearCliente(null, true);
+        cre.setSize(870, 400);
         cre.setLocationRelativeTo(null);
         cre.setVisible(true);
     }//GEN-LAST:event_CrearCLienteActionPerformed
 
     private void CrearCLiente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearCLiente1ActionPerformed
-        CrearProducto cre=new CrearProducto(null,true);
-        cre.setSize(870,400);
+        CrearProducto cre = new CrearProducto(null, true);
+        cre.setSize(870, 400);
         cre.setLocationRelativeTo(null);
         cre.setVisible(true);
     }//GEN-LAST:event_CrearCLiente1ActionPerformed
 
     private void ModificarCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarCliente1ActionPerformed
-        ModificarProducto modi=new ModificarProducto(this,true); 
-        modi.setSize(870,400);
+        ModificarProducto modi = new ModificarProducto(this, true);
+        modi.setSize(870, 400);
         modi.setLocationRelativeTo(null);
         modi.setVisible(true);
     }//GEN-LAST:event_ModificarCliente1ActionPerformed
 
-   
     public static void main(String args[]) {
-        
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

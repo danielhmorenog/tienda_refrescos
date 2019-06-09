@@ -1,48 +1,27 @@
-
 package Interfaz;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-//import javafx.stage.FileChooser;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.text.Document;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-
 
 public class CrearProducto extends javax.swing.JDialog {
 
     File fichero;
-    
+
     //FileChooser jfchCargarfoto;
-  
-   
-    
     public CrearProducto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-         getContentPane().setBackground(new java.awt.Color(178, 34, 34));
-         
-         
-          
+        getContentPane().setBackground(new java.awt.Color(178, 34, 34));
+
     }
 
-   
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -124,7 +103,7 @@ public class CrearProducto extends javax.swing.JDialog {
         jlcodigo1.setText("NIT_PRODUCTO");
 
         jlfotoPRO.setFont(new java.awt.Font("Tahoma", 0, 1)); // NOI18N
-        jlfotoPRO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Usuario-Icono.jpg"))); // NOI18N
+        jlfotoPRO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes 2/Usuario-Icono.jpg"))); // NOI18N
         jlfotoPRO.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jtNIT.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
@@ -276,30 +255,27 @@ public class CrearProducto extends javax.swing.JDialog {
     }//GEN-LAST:event_jtNombrePROActionPerformed
 
     private void jtNombrePROKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombrePROKeyPressed
-        if(evt.getKeyCode()==40)
-        {
+        if (evt.getKeyCode() == 40) {
             jtCANTIDAD.requestFocus();
-            System.out.println("Pressed "+evt.getKeyCode()) ;
+            System.out.println("Pressed " + evt.getKeyCode());
         }
 
     }//GEN-LAST:event_jtNombrePROKeyPressed
 
     private void jbguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbguardarActionPerformed
 
-        if(jtNombrePRO.getText().equals("") || jtCANTIDAD.getText().equals(""))
-        {
+        if (jtNombrePRO.getText().equals("") || jtCANTIDAD.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "TIENE UN CAMPO VACIO \n COMPLETE LOS CAMPOS");
             return;
         }
 
-        try
-        {
+        try {
 
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conexion=DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/sql10292471", "sql10292471", "5smwscQGBg");
-            PreparedStatement ps= conexion.prepareStatement("insert into productos values(?,?,?,?,?)");
-            ps.setString(1,(jtNIT.getText()));
-            ps.setString(2,(jtNombrePRO.getText()));
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freesqldatabase.com:3306/sql10294978", "sql10294978", "PaX2rTpupV");
+            PreparedStatement ps = conexion.prepareStatement("insert into productos values(?,?,?,?,?)");
+            ps.setString(1, (jtNIT.getText()));
+            ps.setString(2, (jtNombrePRO.getText()));
             ps.setString(3, jtCANTIDAD.getText());
             ps.setString(4, jtPRECIO.getText());
             ps.setObject(5, jlfoto1.getText());
@@ -308,29 +284,26 @@ public class CrearProducto extends javax.swing.JDialog {
             conexion.close();
 
             //FileOutputStream file = new FileOutputStream(""+jtPlaca.getText()+".xls");
-            JOptionPane.showMessageDialog(null, "<html><h1>EL PRODUCTO  "+jtNombrePRO.getText()+" <html><h1>FUE CREADO CORRECTAMENTE");
+            JOptionPane.showMessageDialog(null, "<html><h1>EL PRODUCTO  " + jtNombrePRO.getText() + " <html><h1>FUE CREADO CORRECTAMENTE");
             jtNIT.setText("");
             jtNombrePRO.setText("");
             jtCANTIDAD.setText("");
             jlfotoPRO.setText(null);
             jtPRECIO.setText("");
 
-        }
-        catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(null,"YA EXISTE UN PRODUCTO CON ESTE CODIGO(NIT) "+e);
-            System.out.println("error  "+e);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "YA EXISTE UN PRODUCTO CON ESTE CODIGO(NIT) " + e);
+            System.out.println("error  " + e);
 
         }
 
     }//GEN-LAST:event_jbguardarActionPerformed
 
     private void jbguardarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jbguardarKeyPressed
-        if(evt.getKeyCode()==10)
-        {
+        if (evt.getKeyCode() == 10) {
             jbguardarActionPerformed(null);
-            System.out.println("Pressed "+evt.getKeyCode()) ;
-            System.out.println("Pressed "+evt.getKeyCode()) ;
+            System.out.println("Pressed " + evt.getKeyCode());
+            System.out.println("Pressed " + evt.getKeyCode());
         }
     }//GEN-LAST:event_jbguardarKeyPressed
 
@@ -343,35 +316,34 @@ public class CrearProducto extends javax.swing.JDialog {
 
         CargarFoto ventana = new CargarFoto();
 
-        FileNameExtensionFilter filtro =
-        new FileNameExtensionFilter("JPG y PNG","jpg","png");
+        FileNameExtensionFilter filtro
+                = new FileNameExtensionFilter("JPG y PNG", "jpg", "png");
 
         ventana.jFfoto.setFileFilter(filtro);
 
-        resultado= ventana.jFfoto.showOpenDialog(null);
+        resultado = ventana.jFfoto.showOpenDialog(null);
 
-        if (JFileChooser.APPROVE_OPTION == resultado){
+        if (JFileChooser.APPROVE_OPTION == resultado) {
 
             fichero = ventana.jFfoto.getSelectedFile();
 
-            try{
+            try {
 
                 ImageIcon icon = new ImageIcon(fichero.toString());
 
                 Icon icono = new ImageIcon(icon.getImage().
-                    getScaledInstance(60, 70, 45));
+                        getScaledInstance(60, 70, 45));
 
                 //foto.setText(null);
-
-                jlfoto1.setText(""+fichero);
-                System.out.println("fichero "+fichero);
+                jlfoto1.setText("" + fichero);
+                System.out.println("fichero " + fichero);
 
                 jlfotoPRO.setIcon(icono);
 
-            }catch(Exception ex){
+            } catch (Exception ex) {
 
                 JOptionPane.showMessageDialog(null,
-                    "Error abriendo la imagen "+ ex);
+                        "Error abriendo la imagen " + ex);
 
             }
 
@@ -383,19 +355,16 @@ public class CrearProducto extends javax.swing.JDialog {
     }//GEN-LAST:event_jtPRECIOKeyPressed
 
     private void jtCANTIDADKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtCANTIDADKeyPressed
-        if(evt.getKeyCode()==40)
-        {
+        if (evt.getKeyCode() == 40) {
 
-            System.out.println("Pressed "+evt.getKeyCode()) ;
+            System.out.println("Pressed " + evt.getKeyCode());
         }
-        if(evt.getKeyCode()==38)
-        {
+        if (evt.getKeyCode() == 38) {
             jtNombrePRO.requestFocus();
-            System.out.println("Pressed "+evt.getKeyCode()) ;
+            System.out.println("Pressed " + evt.getKeyCode());
         }
     }//GEN-LAST:event_jtCANTIDADKeyPressed
 
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -420,7 +389,7 @@ public class CrearProducto extends javax.swing.JDialog {
         }
         //</editor-fold>
         //</editor-fold>
-        
+
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
